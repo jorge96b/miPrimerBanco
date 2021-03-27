@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -10,9 +10,13 @@ export class LoginPage implements OnInit {
   usuario:any;
   clave:any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  iniciarSesion() {
+    this.router.navigate(['/home']);
   }
 
 }

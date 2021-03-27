@@ -1,20 +1,24 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+      <ion-title>Mis Cuentas</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen>
+  <ion-list *ngFor="let cuenta of listaCuentas">
+    <ion-card class="card" (click)="detalleCuenta()">
+      <ion-card-header>
+        <ion-card-subtitle>Tipo Cuenta</ion-card-subtitle>
+        <ion-card-title><ion-icon name="wallet-outline"></ion-icon> {{cuenta.tipoCuenta}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-label>
+          <h2>Numero Cuenta : {{cuenta.numeroCuenta}}</h2>
+          <h3>Estado : {{cuenta.estado}}</h3>
+          <p>Saldo : ${{cuenta.saldo}}</p>
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>
