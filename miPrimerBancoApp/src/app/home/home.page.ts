@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RestProvider } from 'src/providers/rest/rest';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -7,17 +8,24 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  listaCuentas = [
-    { id: 1, tipoCuenta: 'Ahorros', numeroCuenta:86400000, estado: 'Activa', saldo: 1000000 },
-    { id: 2, tipoCuenta: 'Ahorros', numeroCuenta: 3600000, estado: 'Activa', saldo: 2000000 },
-    { id: 3, tipoCuenta: 'Corriente', numeroCuenta: 86400000, estado: 'Inactiva', saldo: 3000000 },
-    { id: 4, tipoCuenta: 'Corriente', numeroCuenta: 604800000, estado: 'Activa', saldo: 0 },
-  ];
+  listaCuentas :any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,public restProvider : RestProvider) {}
 
+  ngOnInit() {
+    this.consultarCuentas();
+  }
 
   detalleCuenta(){
     this.router.navigate(['/detalle-cuenta']);
   }
+
+  consultarCuentas() {
+    this.restProvider.getCuentas()
+    .then(data => {
+      console.log(data);
+      this.listaCuentas=data;
+    });
+  }
+
 }
