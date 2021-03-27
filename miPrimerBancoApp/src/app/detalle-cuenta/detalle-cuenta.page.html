@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detalleCuenta</ion-title>
+    <ion-title>Movimientos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-list *ngFor="let movimiento of listaMovimientos">
+
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="https://www.gravatar.com/avatar/${i + originalLength}?d=monsterid&f=y">
+      </ion-avatar>
+      <ion-label>
+        <ion-note color="danger">Numero transaccion {{movimiento.numeroTransaccion}}</ion-note>
+        <ion-label>{{movimiento.lugar}}</ion-label>
+        <h2>${{movimiento.valor}}</h2>
+        <p>Fecha :{{movimiento.fecha}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

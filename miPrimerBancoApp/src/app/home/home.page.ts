@@ -18,6 +18,6 @@ export class HomePage {
 
 
   detalleCuenta(){
-
+    this.router.navigate(['/detalle-cuenta']);
   }
 }
