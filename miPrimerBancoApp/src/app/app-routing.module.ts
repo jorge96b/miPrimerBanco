@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'detalle-cuenta',
     loadChildren: () => import('./detalle-cuenta/detalle-cuenta.module').then( m => m.DetalleCuentaPageModule)
   },
+  {
+    path: 'form-cuenta-terceros',
+    loadChildren: () => import('./form-cuenta-terceros/form-cuenta-terceros.module').then( m => m.FormCuentaTercerosPageModule)
+  },
 ];
 
 @NgModule({
