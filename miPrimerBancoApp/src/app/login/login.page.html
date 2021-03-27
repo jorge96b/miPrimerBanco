@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
 
-<ion-content>
+  <div id="container">
 
+    <div class="margin-title">
+      <ion-icon name="cash-outline"></ion-icon><br>
+      <strong>MIBANCO</strong>
+    </div>
+
+    <ion-item lines="none">
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input class="input" type="text" [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input class="input" type="password" [(ngModel)]="clave"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-top: 10%;" lines="none">
+      <ion-button style="width: 100%" expand="block" size="large">Ingresar</ion-button>
+    </ion-item>
+  </div>
 </ion-content>
