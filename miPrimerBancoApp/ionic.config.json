@@ -1,5 +1,7 @@
 {
   "name": "miPrimerBancoApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
