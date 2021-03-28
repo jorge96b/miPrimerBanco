@@ -1,9 +1,61 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>formCuentaTerceros</ion-title>
+    <ion-title>Formulario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
 
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="alias" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Entidad Bancaria</ion-label>
+      <ion-select formControlName="entidadBancaria" placeholder="Selecciona">
+        <ion-select-option value="bancolombia">Bancolombia</ion-select-option>
+        <ion-select-option value="bbva">BBVA</ion-select-option>
+        <ion-select-option value="davivienda">Davivienda</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-radio-group formControlName="tipoCuenta" lines="full">
+      <ion-list-header>
+        <ion-label>Tipo Cuenta</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Ahorros</ion-label>
+        <ion-radio slot="start" value="ahorros" checked></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Corriente</ion-label>
+        <ion-radio slot="start" value="corriente"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Numero Cuenta</ion-label>
+      <ion-input formControlName="numeroCuenta" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Numero Identificacion</ion-label>
+      <ion-input formControlName="numeroIdentificacion" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Moneda</ion-label>
+      <ion-input formControlName="moneda" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Inscribir</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

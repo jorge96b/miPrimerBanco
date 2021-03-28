@@ -9,23 +9,41 @@ import { RestProvider } from 'src/providers/rest/rest';
 export class HomePage {
 
   listaCuentas :any;
+  cuentasTerceros : any;
+  cuentas = "propias";
+  numCuentas = false;
 
   constructor(private router: Router,public restProvider : RestProvider) {}
 
   ngOnInit() {
     this.consultarCuentas();
+    this.cuentasTerceros=JSON.parse(localStorage.getItem('cuentasTerceros'));
+  }
+
+
+  ionViewWillEnter(){
+    this.cuentas = "terceros";
+    this.cuentasTerceros=JSON.parse(localStorage.getItem('cuentasTerceros'));
   }
 
   detalleCuenta(){
     this.router.navigate(['/detalle-cuenta']);
   }
 
+  segmentChanged(){
+    console.log(this.cuentas);
+  }
+
   consultarCuentas() {
     this.restProvider.getCuentas()
     .then(data => {
-      console.log(data);
       this.listaCuentas=data;
+      if(this.listaCuentas.length>0){
+        this.numCuentas = true;
+      }
     });
   }
+
+
 
 }

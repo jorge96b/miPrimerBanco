@@ -1,24 +1,66 @@
 <ion-header [translucent]="true">
+
     <ion-toolbar>
       <ion-title>Mis Cuentas</ion-title>
+    </ion-toolbar>
+
+    <ion-toolbar>
+      <ion-segment  [(ngModel)]="cuentas" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="propias">
+          Propias
+        </ion-segment-button>
+        <ion-segment-button value="terceros">
+          Terceros
+        </ion-segment-button>
+      </ion-segment>
     </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-list *ngFor="let cuenta of listaCuentas">
-    <ion-card class="card" (click)="detalleCuenta()">
-      <ion-card-header>
-        <ion-card-subtitle>Tipo Cuenta</ion-card-subtitle>
-        <ion-card-title><ion-icon name="wallet-outline"></ion-icon> {{cuenta.nombre}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-label>
-          <h2>Numero Cuenta : {{cuenta.numeroCuenta}}</h2>
-          <h3>Estado : {{cuenta.estado}}</h3>
-          <p>Saldo : ${{cuenta.saldo}}</p>
-        </ion-label>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+
+  <div [ngSwitch]="cuentas">
+    <ion-list *ngSwitchCase="'propias'">
+      <ion-list *ngFor="let cuenta of listaCuentas">
+        <ion-card class="card" (click)="detalleCuenta()">
+          <ion-card-header>
+            <ion-card-subtitle>Tipo Cuenta</ion-card-subtitle>
+            <ion-card-title><ion-icon name="wallet-outline"></ion-icon> {{cuenta.nombre}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label>
+              <h2>Numero Cuenta : {{cuenta.numeroCuenta}}</h2>
+              <h3>Estado : {{cuenta.estado}}</h3>
+              <p>Saldo : ${{cuenta.saldo}}</p>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'terceros'">
+      <ion-list *ngFor="let cuenta of cuentasTerceros">
+        <ion-card class="card" (click)="detalleCuenta()">
+          <ion-card-header>
+            <ion-card-title>{{cuenta.alias}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label>
+              <h2>{{cuenta.entidadBancaria}}</h2>
+              <h3>Tipo : {{cuenta.tipoCuenta}}</h3>
+              <p>N : ${{cuenta.numeroCuenta}}</p>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-list>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [disabled]="!numCuentas" [routerLink]="['/form-cuenta-terceros']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
 
 </ion-content>
